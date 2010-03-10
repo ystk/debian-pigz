@@ -1,0 +1,16 @@
+Source: pigz
+Section: utils
+Priority: extra
+Maintainer: Eduard Bloch <blade@debian.org>
+Build-Depends: debhelper (>= 7), zlib1g-dev
+Standards-Version: 3.8.4
+Homepage: http://zlib.net/pigz/
+
+Package: pigz
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Parallel Implementation of GZip
+ pigz, which stands for Parallel Implementation of GZip, is a fully functional
+ replacement for gzip that takes advantage of multiple processors and multiple
+ cores when compressing data.
+
