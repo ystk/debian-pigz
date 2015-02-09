@@ -1,0 +1,61 @@
+Index: pigz-2.3/pigz.c
+===================================================================
+--- pigz-2.3.orig/pigz.c	2013-03-04 08:42:45.000000000 +0100
++++ pigz-2.3/pigz.c	2013-03-17 13:10:10.993648842 +0100
+@@ -426,12 +426,15 @@
+ /* input buffer size */
+ #define BUF 32768U
+ 
++/* maximum path length used here */
++#define PATH_BUF_SZ 8192
++
+ /* globals (modified by main thread only when it's the only thread) */
+ local struct {
+     char *prog;             /* name by which pigz was invoked */
+     int ind;                /* input file descriptor */
+     int outd;               /* output file descriptor */
+-    char inf[PATH_MAX+1];   /* input file name (accommodate recursion) */
++    char inf[PATH_BUF_SZ];  /* input file name (accommodate recursion) */
+     char *outf;             /* output file name (allocated if not NULL) */
+     int verbosity;          /* 0 = quiet, 1 = normal, 2 = verbose, 3 = trace */
+     int headis;             /* 1 to store name, 2 to store date, 3 both */
+@@ -3093,8 +3096,8 @@
+     else {
+         /* set input file name (already set if recursed here) */
+         if (path != g.inf) {
+-            strncpy(g.inf, path, sizeof(g.inf));
+-            if (g.inf[sizeof(g.inf) - 1])
++            strncpy(g.inf, path, PATH_BUF_SZ);
++            if (g.inf[PATH_BUF_SZ - 1])
+                 bail("name too long: ", path);
+         }
+         len = strlen(g.inf);
+@@ -3105,7 +3108,7 @@
+             if (errno == ENOENT && (g.list || g.decode)) {
+                 char **try = sufs;
+                 do {
+-                    if (*try == NULL || len + strlen(*try) >= sizeof(g.inf))
++                    if (*try == NULL || len + strlen(*try) >= PATH_BUF_SZ)
+                         break;
+                     strcpy(g.inf + len, *try++);
+                     errno = 0;
+@@ -3186,15 +3189,15 @@
+             /* run process() for each entry in the directory */
+             cut = base = g.inf + strlen(g.inf);
+             if (base > g.inf && base[-1] != (unsigned char)'/') {
+-                if ((size_t)(base - g.inf) >= sizeof(g.inf))
++                if ((size_t)(base - g.inf) >= PATH_BUF_SZ)
+                     bail("path too long", g.inf);
+                 *base++ = '/';
+             }
+             item = roll;
+             while (*item) {
+-                strncpy(base, item, sizeof(g.inf) - (base - g.inf));
+-                if (g.inf[sizeof(g.inf) - 1]) {
+-                    strcpy(g.inf + (sizeof(g.inf) - 4), "...");
++                strncpy(base, item, PATH_BUF_SZ - (base - g.inf));
++                if (g.inf[PATH_BUF_SZ - 1]) {
++                    strcpy(g.inf + (PATH_BUF_SZ - 4), "...");
+                     bail("path too long: ", g.inf);
+                 }
+                 process(g.inf);

@@ -1,0 +1,81 @@
+pigz (2.3.1-2) unstable; urgency=high
+
+  * Patch(es) from upstream's SCM to solve handling of target file names with
+    the -N option (CVE-2015-1191, closes: #774978)
+
+ -- Eduard Bloch <blade@debian.org>  Sun, 18 Jan 2015 23:58:51 +0100
+
+pigz (2.3.1-1) unstable; urgency=medium
+
+  * New upstream version 2.3.1
+  * Changed rules to dh(9), policy reference update, removed patch for LDFLAGS
+    and libm usage (fixed by upstream)
+
+ -- Eduard Bloch <blade@debian.org>  Fri, 02 May 2014 17:29:38 +0200
+
+pigz (2.3-2) unstable; urgency=low
+
+  * Unstable upload
+  * Editorial changes (policy version update, watch file from bartm)
+
+ -- Eduard Bloch <blade@debian.org>  Sun, 04 Aug 2013 01:26:09 +0200
+
+pigz (2.3-1) experimental; urgency=low
+
+  * New upstream release
+  * restored Debian hardening flags inclusion, also fixes linking with libm
+    (minor upstream bug)
+  * Use locally defined buffer size instead of PATH_MAX (hurd porting)
+
+ -- Eduard Bloch <blade@debian.org>  Sun, 17 Mar 2013 11:10:42 +0100
+
+pigz (2.2.5-1) experimental; urgency=low
+
+  * New upstream version (includes fix of #700608, removed our patch)
+
+ -- Eduard Bloch <blade@debian.org>  Fri, 01 Mar 2013 21:23:58 +0100
+
+pigz (2.2.4-2) unstable; urgency=high
+
+  * Use 600 permissions for unfinished output files (CVE-2013-0296,
+    closes: #700608)
+  * started applying Debian hardening flags
+
+ -- Eduard Bloch <blade@debian.org>  Sat, 23 Feb 2013 13:44:42 +0100
+
+pigz (2.2.4-1) unstable; urgency=low
+
+  * New upstream release
+  * Using upstream manual page (closes: #520617)
+  * Creating unpigz hardlink and related manpage link (closes: #661791)
+  * Removed using_standard_format_macros patch (superseded by upstream change)
+
+ -- Eduard Bloch <blade@debian.org>  Tue, 08 May 2012 22:59:22 +0200
+
+pigz (2.2.3-1) unstable; urgency=low
+
+  * New upstream release (closes: #659248)
+  * Policy version bump, also using format 3.0 (quilt) and xz compression,
+
+ -- Eduard Bloch <blade@debian.org>  Sat, 11 Feb 2012 01:10:06 +0100
+
+pigz (2.1.6-1) unstable; urgency=low
+
+  * New upstream release (closes: #573310)
+
+ -- Eduard Bloch <blade@debian.org>  Wed, 10 Mar 2010 18:26:21 +0100
+
+pigz (2.1.5-1) unstable; urgency=low
+
+  * New upstream release (implemented most of local modifications)
+
+ -- Eduard Bloch <blade@debian.org>  Thu, 14 Jan 2010 20:48:17 +0100
+
+pigz (2.1.4-1) unstable; urgency=low
+
+  * Initial release (closes: #510624)
+  * Using sysconf(_SC_NPROCESSORS_ONLN) to set a default number of
+    compressing threads rather than default value (8).
+  * Changes -s option to -S to be compatible with gzip
+
+ -- Eduard Bloch <blade@debian.org>  Thu, 08 Jan 2009 20:58:27 +0100
