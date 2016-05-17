@@ -2701,7 +2701,7 @@ local void process(char *path)
         memcpy(out, to, len);
         strcpy(out + len, decode ? "" : sufx);
         outd = open(out, O_CREAT | O_TRUNC | O_WRONLY |
-                         (force ? 0 : O_EXCL), 0666);
+                         (force ? 0 : O_EXCL), 0600);
 
         /* if exists and not -f, give user a chance to overwrite */
         if (outd < 0 && errno == EEXIST && isatty(0) && verbosity) {
@@ -2717,7 +2717,7 @@ local void process(char *path)
             } while (ch != EOF && ch != '\n' && ch != '\r');
             if (reply == 1)
                 outd = open(out, O_CREAT | O_TRUNC | O_WRONLY,
-                            0666);
+                            0600);
         }
 
         /* if exists and no overwrite, report and go on to next */

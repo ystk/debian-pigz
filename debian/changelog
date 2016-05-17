@@ -1,0 +1,27 @@
+pigz (2.1.6-1+squeeze1) stable; urgency=high
+
+  * Use 600 permissions for unfinished output files (CVE-2013-0296,
+    closes: #700608)
+
+ -- Eduard Bloch <blade@debian.org>  Sat, 23 Feb 2013 21:46:31 +0100
+
+pigz (2.1.6-1) unstable; urgency=low
+
+  * New upstream release (closes: #573310)
+
+ -- Eduard Bloch <blade@debian.org>  Wed, 10 Mar 2010 18:26:21 +0100
+
+pigz (2.1.5-1) unstable; urgency=low
+
+  * New upstream release (implemented most of local modifications)
+
+ -- Eduard Bloch <blade@debian.org>  Thu, 14 Jan 2010 20:48:17 +0100
+
+pigz (2.1.4-1) unstable; urgency=low
+
+  * Initial release (closes: #510624)
+  * Using sysconf(_SC_NPROCESSORS_ONLN) to set a default number of
+    compressing threads rather than default value (8).
+  * Changes -s option to -S to be compatible with gzip
+
+ -- Eduard Bloch <blade@debian.org>  Thu, 08 Jan 2009 20:58:27 +0100
